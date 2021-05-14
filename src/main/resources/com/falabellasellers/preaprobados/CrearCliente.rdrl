@@ -1,0 +1,24 @@
+package com.falabellasellers.preaprobados;
+
+import java.lang.Number;
+
+rule "CrearCliente"
+	dialect "mvel"
+	salience 18
+	no-loop true
+	when
+		ClienteSII0 : ClienteSII( eval( rut!= null ))
+		TR : TramosSII( )
+		Sectores0 : Sectores( )
+	then
+		Cliente Cliente0 = new Cliente();
+		Cliente0.setTamaño( TR.getTamañoEmpresa() );
+		Cliente0.setTramoSII( TR.getTramoSii() );
+		Cliente0.setVentaCastigada( TR.getVentaCastigada() );
+		Cliente0.setMargen( Sectores0.getMargen() );
+		Cliente0.setSectorEconomico( Sectores0.getSector() );
+		insert( Cliente0 );
+		modify( Cliente0 ) {
+						setMercadoObjetivo(TR.getMercadoObjetivo())
+		}
+end

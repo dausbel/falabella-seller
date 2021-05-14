@@ -1,0 +1,17 @@
+package com.falabellasellers.preaprobados;
+
+import java.lang.Number;
+
+rule "InicializarCTE"
+	dialect "mvel"
+	salience 15
+	no-loop true
+	when
+		tributary0 : TributaryResponseObject( this == null )
+	then
+		TributaryResponseObject tributary0  = new TributaryResponseObject();
+		CarpetaTributaria carpeta0 = new CarpetaTributaria();
+		VentasCTE ventas0 = new VentasCTE();
+		CompraVentaMensualesObject compra0 = new CompraVentaMensualesObject();
+		System.out.println("Inicializa Objetos de Carpetas Tributarias");
+end

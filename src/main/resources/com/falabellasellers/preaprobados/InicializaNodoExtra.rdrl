@@ -1,0 +1,9 @@
+package com.falabellasellers.preaprobados;
+
+import java.lang.Number;
+
+rule "InicializaNodoExtra"
+	dialect "mvel"
+	when
+	then
+end

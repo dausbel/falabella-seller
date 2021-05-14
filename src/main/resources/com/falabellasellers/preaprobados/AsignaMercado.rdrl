@@ -1,0 +1,16 @@
+package com.falabellasellers.preaprobados;
+
+import java.lang.Number;
+
+rule "AsignaMercado"
+	dialect "mvel"
+	salience 17
+	no-loop true
+	when
+		Cliente0 : Cliente( )
+		TR : TramosSII( )
+	then
+		modify(Cliente0){
+		setMercadoObjetivo(TR.getMercadoObjetivo())
+		}
+end

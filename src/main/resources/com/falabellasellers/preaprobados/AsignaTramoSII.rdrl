@@ -1,0 +1,16 @@
+package com.falabellasellers.preaprobados;
+
+import java.lang.Number;
+
+rule "AsignaTramoSII"
+	dialect "mvel"
+	salience 20
+	no-loop true
+	when
+		ClienteSII0 : ClienteSII( eval( rut!= null ))
+	then
+		TramosSII TR = new TramosSII();
+		Sectores Sectores0 = new Sectores();
+		TR.setTramoSii(new Integer(ClienteSII0.getTramo()).intValue() );
+		Sectores0.setSector(ClienteSII0.getSubrubroEconomico());
+end
